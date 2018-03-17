@@ -15,5 +15,5 @@ $MODEL_FILE = "$HMM_DIR/models";
 $RESULT_DIR = "$TIMIT_DIR/result";
     
 #Viterbi decoding
-system("HVite -H $HMM_DIR/macros -H $HMM_DIR/models -S $LIST_DIR/list_mfcc_train.scp -C $CONFIG_DIR/config_train -w $LIB_DIR/phone_net -i $RESULT_DIR/result.mlf -s 0 -p 0 $LIB_DIR/phone_dict $LIB_DIR/phone_list");
-system("HResults -e \"???\" sp -I $LAB_DIR/train.mlf $LIB_DIR/phone_list $RESULT_DIR/result.mlf");
+system("HVite -H $HMM_DIR/macros -H $HMM_DIR/models -S $LIST_DIR/list_mfcc_test.scp -C $CONFIG_DIR/config_train -w $LIB_DIR/phone_net -i $RESULT_DIR/result.mlf -s 0 -p 0 $LIB_DIR/phone_dict $LIB_DIR/phone_list");
+system("HResults -e \"???\" sp -I $LAB_DIR/test.mlf $LIB_DIR/phone_list $RESULT_DIR/result.mlf");
