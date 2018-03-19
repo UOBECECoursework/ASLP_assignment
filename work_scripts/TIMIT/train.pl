@@ -10,6 +10,8 @@ $LIB_DIR = "$TIMIT_DIR/lib";
 $SPEC_DIR = "$TIMIT_DIR/spec";
 $WAV_DIR = "$TIMIT_DIR/wav";
 $HMM_DIR = "$TIMIT_DIR/hmms";
+$ITER_INSERTED = 4;   #Number of iterations after inserting every mixture
+$TOTAL_MIXNUM = 8; #Total number of mixture
 
 system("rm -fr $HMM_DIR/*");
 
@@ -31,11 +33,11 @@ print("Seed HMM generated!\n");
 print("Training...\n");
 
 
-foreach $mix_num (1..8)
+foreach $mix_num (1..$TOTAL_MIXNUM)
 {
     #4 iterations after every inserted mixture component
-    $iter_end = $mix_num * 5 - 1;
-    $iter_beg = $iter_end - 3;
+    $iter_end = $mix_num * ($ITER_INSERTED + 1) - 1;
+    $iter_beg = $iter_end - ($ITER_INSERTED - 1);
     $prev_iter_end = $iter_beg - 1;
     mkdir("$HMM_DIR/hmm${iter_beg}");
     system("HHEd -H $HMM_DIR/hmm${prev_iter_end}/macros -H $HMM_DIR/hmm${prev_iter_end}/models -M $HMM_DIR/hmm${iter_beg} $LIB_DIR/mix${mix_num}_st3.hed $LIB_DIR/phone_list");

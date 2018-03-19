@@ -12,8 +12,7 @@ cd $1
 
 echo "#!MLF!#"
 
-lab_file_list=$(ls | grep "\.lab")
-for lab_file in $lab_file_list
+for lab_file in `ls | grep "\.lab"`
 do
     echo "\"*/${lab_file}\""
     cat $lab_file
